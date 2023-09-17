@@ -11,16 +11,22 @@ type StudentType = {
 
 export function StudentComponent (props:StudentComponentType){
   
- return(
-  <ul>
+return(
+  <table >
+    <tr>
+    <td>ID</td>
+    <td>NAME</td>
+    <td>AGE</td>
+    </tr>
     {props.students.map((objectFromSrudentsArray:StudentType)=>{
       return(
-      <li key={objectFromSrudentsArray.id}>
-        <span>{objectFromSrudentsArray.id} </span>
-        <span>{objectFromSrudentsArray.name} </span>
-        <span>age: {objectFromSrudentsArray.age}</span></li>
+        <tr key={objectFromSrudentsArray.id}>
+          <td><span>{objectFromSrudentsArray.id}</span></td>
+          <td><span>{objectFromSrudentsArray.name}</span></td>
+          <td><span>{objectFromSrudentsArray.age}</span></td>
+        </tr>
       )
     })}
-  </ul>
- )
+  </table>
+)
 }
