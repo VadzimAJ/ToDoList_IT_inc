@@ -10,9 +10,10 @@ function App() {
   const Button2Foo = (subScr: string, age?: number, title?: string) => {
     console.log('Hello Im ' + subScr, 'Age: ' + age, 'it`s ' + title + ' Button.');
   }
-  
+
   const Button3Foo = ( title?: string) => {
     console.log( title + ' Button.');
+  }
 
   return (
     <div className="App">

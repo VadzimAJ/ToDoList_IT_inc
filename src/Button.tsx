@@ -3,6 +3,7 @@ import React from 'react';
 type ButtonType = {
   title: string;
   callBack: (title?: string | undefined) => void;
+};
 
 export const Button = (props: ButtonType) => {
   const onClickHandler = () => {
