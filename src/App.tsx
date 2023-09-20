@@ -1,49 +1,27 @@
 import React, { useState } from 'react';
 import './App.css';
-import { TaskType, TodoList } from './TodoList';
 
-export type FilterValuesType = "all" | "completed" | "active"
 
 function App() {
 
-    let [tasks, setTasks] = useState<Array<TaskType>>([
-        {id: 1, title:"HTML&CSS", isDone: true},
-        {id: 2, title:"JS", isDone: true},
-        {id: 3, title:"React", isDone: false}
-    ]);
+  let [a, setA] = useState(1)
 
+  const onClickHandler = () => {
+    setA(++a)
+    console.log(a)
+  }
 
-    function remomeTask(id:number) {
+  const onClickHandler0 = () => {
+    setA(a=0)
+    console.log(a)
+  }
 
-        let filteredTasks = tasks.filter( i => i.id !== id)
-        setTasks(filteredTasks);
-    }
-
-    function changeFilter (value: FilterValuesType){
-        setFilter(value);
-    }
-
-    let [filter, setFilter] = useState<FilterValuesType>("all");
-
-    let taskForTodolist = tasks;
-    if (filter === "completed") {
-        taskForTodolist = tasks.filter(i => i.isDone === true);
-    }
-    if (filter === "active") {
-        taskForTodolist = tasks.filter(i => i.isDone === false);
-    }
-
-    return (
-        <div className="App">
-            <TodoList   title="What to Learn" 
-                        tasks = {taskForTodolist}
-                        removeTask = {remomeTask}
-                        changeFilter = {changeFilter}
-            />
-        </div>
-    );
-
+  return (
+    <div>
+      <h1>{a}</h1>
+      <button onClick={onClickHandler}>number</button>
+      <button onClick={onClickHandler0}>0</button>
+    </div>
+  );
 }
-
-
 export default App;
