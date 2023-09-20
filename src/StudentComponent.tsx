@@ -13,12 +13,9 @@ type MoneyType = {
   
 }
 
-type FilterType = {
-  title: 'ALL' | 'Dollars' | 'RUBLS'
-}
 export function MoneyComponent (props:MoneyComponentType,){
 
-  let [filter, seFilter] = useState<FilterType> ('ALL')
+  let [filter, seFilter] = useState ('ALL')
   
 
   let currentMoney = props.money;
