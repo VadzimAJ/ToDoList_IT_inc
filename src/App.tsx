@@ -3,6 +3,29 @@ import React, {useState} from 'react';
 import { ReactDOM } from 'react';
 import './index.css'
 import './App.css';
+
+
+function App() {
+
+  let [a, setA] = useState(1)
+
+  const onClickHandler = () => {
+    setA(++a)
+    console.log(a)
+  }
+
+  const onClickHandler0 = () => {
+    setA(a=0)
+    console.log(a)
+  }
+
+  return (
+    <div>
+      <h1>{a}</h1>
+      <button onClick={onClickHandler}>number</button>
+      <button onClick={onClickHandler0}>0</button>
+    </div>
+  );
 import { Button } from './Button';
 
 function App() {
@@ -107,6 +130,4 @@ export type FilterValuesType = "all" | "completed" | "active"
     );
 
 }
-
-
 export default App;
