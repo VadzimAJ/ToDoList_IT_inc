@@ -1,8 +1,60 @@
+
 import React, {useState} from 'react';
 import { ReactDOM } from 'react';
 import './index.css'
 import './App.css';
 import { MoneyComponent } from './StudentComponent';
+
+
+
+function App() {
+
+  let [a, setA] = useState(1)
+
+  const onClickHandler = () => {
+    setA(++a)
+    console.log(a)
+  }
+
+  const onClickHandler0 = () => {
+    setA(a=0)
+    console.log(a)
+  }
+
+  return (
+    <div>
+      <h1>{a}</h1>
+      <button onClick={onClickHandler}>number</button>
+      <button onClick={onClickHandler0}>0</button>
+    </div>
+  );
+import { Button } from './Button';
+
+function App() {
+  const Button1Foo = (subScr: string, age?: number, title?: string) => {
+    console.log('Hello Im ' + subScr, 'Age: ' + age, 'it`s ' + title + ' Button.');
+  }
+
+  const Button2Foo = (subScr: string, age?: number, title?: string) => {
+    console.log('Hello Im ' + subScr, 'Age: ' + age, 'it`s ' + title + ' Button.');
+  }
+
+  const Button3Foo = ( title?: string) => {
+    console.log( title + ' Button.');
+  }
+
+  return (
+    <div className="App">
+      <Button title={'First'} callBack={(title) => Button1Foo('Rolly', 21, title)} />
+      <Button title={'Second'} callBack={(title) => Button2Foo('Jager', 23, title)} />
+      <Button title={'Stuped'} callBack={(title) => Button3Foo(title)} />
+    </div>
+  );
+}
+
+export default App;
+import { StudentComponent } from './StudentComponent';
+
 
 
 
@@ -25,8 +77,50 @@ function App() {
   ])  
 
        return (
-        <MoneyComponent money={money}/>
-    );
-}
 
+        <MoneyComponent money={money}/>
+=======
+        <StudentComponent students={students}/>
+
+export type FilterValuesType = "all" | "completed" | "active"
+
+    let [tasks, setTasks] = useState<Array<TaskType>>([
+        {id: 1, title:"HTML&CSS", isDone: true},
+        {id: 2, title:"JS", isDone: true},
+        {id: 3, title:"React", isDone: false}
+    ]);
+
+
+    function remomeTask(id:number) {
+
+        let filteredTasks = tasks.filter( i => i.id !== id)
+        setTasks(filteredTasks);
+    }
+
+    function changeFilter (value: FilterValuesType){
+        setFilter(value);
+    }
+
+    let [filter, setFilter] = useState<FilterValuesType>("all");
+
+    let taskForTodolist = tasks;
+    if (filter === "completed") {
+        taskForTodolist = tasks.filter(i => i.isDone === true);
+    }
+    if (filter === "active") {
+        taskForTodolist = tasks.filter(i => i.isDone === false);
+    }
+
+    return (
+        <div className="App">
+            <TodoList   title="What to Learn" 
+                        tasks = {taskForTodolist}
+                        removeTask = {remomeTask}
+                        changeFilter = {changeFilter}
+            />
+        </div>
+
+    );
+
+}
 export default App;
