@@ -1,32 +1,63 @@
+import React, {useState} from "react"
+import { NumberTypeAnnotation } from "@babel/types"
+import { Button } from "./Button"
 
-type StudentComponentType={
-  students: Array<StudentType>
+type MoneyComponentType={
+  money: Array<MoneyType>
 }
 
-type StudentType = {
-  id: number
-  name: string
-  age: number
-}
-
-export function StudentComponent (props:StudentComponentType){
+type MoneyType = {
+  banknots: string
+  value: number
+  number: string
   
+}
+
+export function MoneyComponent (props:MoneyComponentType,){
+
+  let [filter, seFilter] = useState ('ALL')
+  
+
+  let currentMoney = props.money;
+
+  if (filter === 'Dollars') {
+    currentMoney = props.money.filter(filteredMoney => filteredMoney.banknots === 'Dollars');
+  }
+  if (filter === 'RUBLS') {
+    currentMoney = props.money.filter(filteredMoney => filteredMoney.banknots === 'RUBLS');  
+}
+
+const ButtonFoo = ( title: string) => {
+  let useMopney = title;
+  seFilter(useMopney);
+}
+
 return(
-  <table >
-    <tr>
-    <td>ID</td>
-    <td>NAME</td>
-    <td>AGE</td>
-    </tr>
-    {props.students.map((objectFromSrudentsArray:StudentType)=>{
-      return(
-        <tr key={objectFromSrudentsArray.id}>
-          <td><span>{objectFromSrudentsArray.id}</span></td>
-          <td><span>{objectFromSrudentsArray.name}</span></td>
-          <td><span>{objectFromSrudentsArray.age}</span></td>
-        </tr>
-      )
-    })}
-  </table>
+  <div>
+    <table >
+        <thead>
+          <tr >
+            <td><b>Banknots__</b></td>
+            <td><b>Value__</b></td>
+            <td><b>Number</b></td>
+          </tr>
+        </thead>
+        <tbody>
+          {currentMoney.map((objectFromMoneyArray:MoneyType, index: number)=>{
+            return(
+              <tr key={index}>
+                <td><span>{objectFromMoneyArray.banknots}</span></td>
+                <td><span>{objectFromMoneyArray.value}</span></td>
+                <td><span>{objectFromMoneyArray.number}</span></td>
+              </tr>
+            )
+          })}
+        </tbody>    
+      </table>
+      <Button title={'Dollars'} callBack={(title) => ButtonFoo(title)}/>
+      <Button title={'RUBLS'} callBack={(title) => ButtonFoo(title)}/>
+      <Button title={'ALL'} callBack={(title) => ButtonFoo(title)}/>
+  </div>
+  
 )
 }
